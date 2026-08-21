@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Fitness Teardown — Trust and Feedback Gaps at the Edges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F1;
+    --ink:#1C1B19;
+    --ink-soft:#5A574F;
+    --line:#DEDACF;
+    --card:#FFFFFF;
+    --privacy:#3B5A8A;
+    --privacy-soft:#E8EEF6;
+    --reliability:#B8622E;
+    --reliability-soft:#F7E9DD;
+    --freak:#B8622E;
+    --casual:#3B7A6B;
+    --delighter:#8A8577;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow .num{color:var(--reliability);font-weight:500;}
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  /* HERO */
+  .hero{padding:100px 0 70px;}
+  .hero h1{font-size:44px;line-height:1.12;max-width:680px;}
+  .hero .sub{font-size:18px;color:var(--ink-soft);max-width:560px;margin-top:20px;}
+  .hero .role{margin-top:36px;font-size:13px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;letter-spacing:.03em;}
+
+  .anecdote{
+    margin-top:44px;
+    padding:26px 28px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--reliability);
+    border-radius:4px;
+    font-size:16px;
+    color:var(--ink);
+  }
+  .anecdote span{color:var(--ink-soft);font-size:13px;display:block;margin-top:10px;font-family:'IBM Plex Mono',monospace;}
+
+  /* LEDGER (signature motif) */
+  .ledger{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .ledger-col{background:var(--card);padding:22px 24px;}
+  .ledger-col h4{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;}
+  .ledger-col.privacy h4{color:var(--privacy);}
+  .ledger-col.reliability h4{color:var(--reliability);}
+  .bar-track{height:8px;background:var(--paper);border-radius:4px;overflow:hidden;margin-bottom:8px;}
+  .bar-fill{height:100%;border-radius:4px;}
+  .privacy .bar-fill{width:92%;background:var(--privacy);}
+  .reliability .bar-fill{width:18%;background:var(--reliability);background-image:repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(0,0,0,.08) 4px,rgba(0,0,0,.08) 8px);}
+  .ledger-col p{font-size:13px;color:var(--ink-soft);}
+
+  section{padding:64px 0;border-top:1px solid var(--line);}
+
+  /* PROBLEM CARDS */
+  .problems{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+  .problem-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:26px;}
+  .problem-card .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+  .problem-card.p1 .tag{background:var(--reliability-soft);color:var(--reliability);}
+  .problem-card.p2 .tag{background:var(--privacy-soft);color:var(--privacy);}
+  .problem-card h3{font-size:21px;margin-bottom:10px;}
+  .problem-card p{font-size:14.5px;color:var(--ink-soft);}
+  .problem-card .persona-hit{margin-top:16px;font-size:12.5px;font-family:'IBM Plex Mono',monospace;color:var(--ink);border-top:1px dashed var(--line);padding-top:12px;}
+
+  /* PERSONAS */
+  .personas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+  .persona-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px 20px;}
+  .persona-card .dot{width:10px;height:10px;border-radius:50%;margin-bottom:14px;}
+  .persona-card.freak .dot{background:var(--freak);}
+  .persona-card.casual .dot{background:var(--casual);}
+  .persona-card.delighter .dot{background:var(--delighter);}
+  .persona-card h4{font-family:'Fraunces',serif;font-size:18px;margin-bottom:6px;}
+  .persona-card .pct{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);margin-bottom:12px;}
+  .persona-card p{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .persona-card .match{font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:8px 10px;color:var(--ink);}
+  .persona-card .match b{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}
+
+  /* MIXTURE MODEL */
+  .stack-bar{display:flex;width:100%;height:38px;border-radius:6px;overflow:hidden;margin:24px 0 10px;}
+  .stack-bar div{display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#fff;}
+  .seg-freak{background:var(--freak);width:16.7%;}
+  .seg-casual{background:var(--casual);width:70%;}
+  .seg-delighter{background:var(--delighter);width:13.3%;}
+  .stack-labels{display:flex;font-size:12px;color:var(--ink-soft);margin-bottom:28px;}
+  .stack-labels div{width:16.7%;text-align:center;}
+  .stack-labels div:nth-child(2){width:70%;}
+  .stack-labels div:nth-child(3){width:13.3%;}
+
+  .equation{
+    background:var(--card);border:1px solid var(--line);border-radius:8px;padding:24px;
+    font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:2;color:var(--ink);
+    margin-top:20px;
+  }
+  .equation .result{color:var(--reliability);font-weight:500;}
+
+  /* LTV BARS */
+  .ltv-block{margin-top:36px;}
+  .ltv-row{margin-bottom:30px;}
+  .ltv-row .label{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px;}
+  .ltv-row .label b{font-family:'Fraunces',serif;font-size:16px;}
+  .ltv-bars{display:flex;align-items:flex-end;gap:10px;height:120px;}
+  .ltv-bar-group{flex:1;text-align:center;}
+  .ltv-bar{border-radius:4px 4px 0 0;margin:0 auto;width:60%;}
+  .ltv-bar.baseline{background:var(--casual);}
+  .ltv-bar.risk{background:var(--reliability);opacity:.7;}
+  .ltv-bar-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:6px;}
+  .ltv-legend{display:flex;gap:18px;font-size:12px;color:var(--ink-soft);margin-top:8px;}
+  .ltv-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .ltv-legend i{width:10px;height:10px;border-radius:2px;display:inline-block;}
+
+  /* PROTOTYPE MOCKUPS */
+  .prototypes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+  .phone{background:#0d0d0e;border-radius:32px;padding:14px;box-shadow:0 12px 30px rgba(0,0,0,.15);}
+  .phone-screen{background:linear-gradient(180deg,#1a1a1c,#000);border-radius:20px;padding:34px 16px 20px;color:#fff;min-height:280px;}
+  .phone-time{text-align:center;font-family:'Inter',sans-serif;font-weight:300;font-size:34px;margin-bottom:4px;}
+  .phone-date{text-align:center;font-size:11px;color:#8a8a8e;margin-bottom:20px;}
+  .notif{background:rgba(255,255,255,.08);border-radius:14px;padding:14px;font-size:12px;}
+  .notif .row{display:flex;justify-content:space-between;margin-bottom:4px;}
+  .notif .title{font-weight:600;}
+  .notif .time{color:#8a8a8e;font-size:10px;}
+  .notif .body{color:#c7c7ca;margin-bottom:8px;}
+  .notif .sub-card{background:rgba(0,0,0,.3);border-radius:10px;padding:8px 10px;font-size:11px;}
+  .notif .sub-card.ok{color:#4ADE80;}
+  .proto-caption{font-size:13px;color:var(--ink-soft);margin-top:14px;}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;margin-top:28px;font-size:13.5px;}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);}
+  th{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);font-weight:500;}
+  td.num{font-family:'IBM Plex Mono',monospace;}
+  tr.total td{font-weight:600;border-top:1px solid var(--ink);}
+
+  /* RECOMMENDATION */
+  .rec-box{
+    margin-top:32px;background:var(--ink);color:var(--paper);border-radius:10px;padding:36px 32px;
+  }
+  .rec-box .eyebrow{color:#B8A98E;}
+  .rec-box .eyebrow::after{background:#3A3936;}
+  .rec-box h3{color:#fff;font-size:24px;margin-bottom:14px;}
+  .rec-box p{color:#C9C6BD;font-size:14.5px;margin-bottom:12px;}
+  .rec-box .final-note{margin-top:20px;padding-top:20px;border-top:1px solid #3A3936;font-size:13px;color:#9C998F;font-style:italic;}
+
+  footer{padding:50px 0 80px;text-align:center;color:var(--ink-soft);font-size:12.5px;font-family:'IBM Plex Mono',monospace;}
+
+  @media (max-width:720px){
+    .hero h1{font-size:32px;}
+    .problems,.personas,.prototypes{grid-template-columns:1fr;}
+    .ledger{grid-template-columns:1fr;}
+  }
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="wrap hero">
+  <div class="eyebrow"><span class="num">Product Teardown</span> Apple Fitness</div>
+  <h1>Trust and feedback gaps at the edges of Apple Fitness</h1>
+  <p class="sub">A persona-driven teardown, market-sized and cost-modeled, examining two moments where Apple Fitness quietly breaks the trust it works hard to earn everywhere else.</p>
+  <p class="role">Product Management Case Study</p>
+
+  <div class="anecdote">
+    "When I'm about to hit a goal on a run, my watch dies — and I have no idea whether the workout saved. And on an average day, I can't tell if my walking is even contributing to my goals until it's already too late to do anything about it."
+    <span>— the two moments this teardown starts from</span>
+  </div>
+
+  <div class="ledger">
+    <div class="ledger-col privacy">
+      <h4>Privacy Trust</h4>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+      <p>Extensively documented. On-device encryption, data minimization, public commitments from leadership.</p>
+    </div>
+    <div class="ledger-col reliability">
+      <h4>Reliability Trust</h4>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+      <p>Largely undefined. No equivalent public commitment to data completeness or capture reliability.</p>
+    </div>
+  </div>
+</div>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">01</span> The Problems</div>
+  <div class="problems">
+    <div class="problem-card p1">
+      <span class="tag">Reliability</span>
+      <h3>Sync uncertainty</h3>
+      <p>When a Watch dies mid-run — often near a goal — there's no way to know if the workout was captured until it's recharged. Phone-based fallback tracking is also unreliable.</p>
+      <div class="persona-hit">Hits hardest → Fitness Freak</div>
+    </div>
+    <div class="problem-card p2">
+      <span class="tag">Feedback</span>
+      <h3>Goal-visibility gap</h3>
+      <p>Incidental activity doesn't visibly count toward daily goals until end of day. Existing nudges ("great progress!") often arrive too late — around 8pm — to act on.</p>
+      <div class="persona-hit">Hits hardest → Casual Enthusiast</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">02</span> Personas</div>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:560px;">Validated, unexpectedly, by Apple's own hardware lineup — the Watch tiers already segment by engagement level, using language that mirrors these three personas.</p>
+  <div class="personas">
+    <div class="persona-card freak">
+      <div class="dot"></div>
+      <h4>Fitness Freak</h4>
+      <div class="pct">16.7% · ~28.9M users</div>
+      <p>Deliberate, consistent tracker. Competes with friends, monitors long-term trends. Holds Apple to a Garmin/Whoop-level reliability bar.</p>
+      <div class="match"><b>Apple's match</b>Watch Ultra 3 — $799 · "the ultimate sports and adventure watch"</div>
+    </div>
+    <div class="persona-card casual">
+      <div class="dot"></div>
+      <h4>Casual Enthusiast</h4>
+      <div class="pct">70.0% · ~119M users</div>
+      <p>Building the habit, not there yet. Relies on incidental activity to hit goals — most exposed to the visibility gap.</p>
+      <div class="match"><b>Apple's match</b>Watch Series 11 — $399 · "the ultimate way to watch your health"</div>
+    </div>
+    <div class="persona-card delighter">
+      <div class="dot"></div>
+      <h4>Passive Delighter</h4>
+      <div class="pct">13.3% · ~22.6M users</div>
+      <p>Owns it for notifications and status. Occasionally, unintentionally delighted by a closed ring — never chasing one.</p>
+      <div class="match"><b>Apple's match</b>Watch SE 3 — $249 · "essential health features, great value"</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">03</span> Sizing the Segments</div>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Independent research shows fewer than 40% of Apple Watch users close all three rings on a given day. Working backward from that ~37% average — via a weighted mixture model — produces a defensible population split across the three personas.</p>
+
+  <div class="stack-bar">
+    <div class="seg-freak">17%</div><div class="seg-casual">70%</div><div class="seg-delighter">13%</div>
+  </div>
+  <div class="stack-labels"><div>Fitness Freak</div><div>Casual Enthusiast</div><div>Passive Delighter</div></div>
+
+  <div class="equation">
+    0.80(F) + 0.30(C) + 0.20(O) = 0.37 &nbsp;&nbsp;·&nbsp;&nbsp; F + C + O = 1<br>
+    Solved with C fixed at 70% (assumption) →<br>
+    <span class="result">F ≈ 16.7%   C ≈ 70.0%   O ≈ 13.3%</span> &nbsp;·&nbsp; check: 0.80(.167)+0.30(.70)+0.20(.133) = 0.37 ✓
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">04</span> Value at Risk</div>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Modeling lifetime value under two scenarios per segment — a normal trajectory, and one where each problem goes unsolved — surfaces where the real financial exposure sits.</p>
+
+  <div class="ltv-block">
+    <div class="ltv-row">
+      <div class="label"><b>Fitness Freak</b><span class="mono">~13.0x swing · $39.6B population-wide</span></div>
+      <div class="ltv-bars">
+        <div class="ltv-bar-group"><div class="ltv-bar baseline" style="height:100px;"></div><div class="ltv-bar-label">$1,484 baseline</div></div>
+        <div class="ltv-bar-group"><div class="ltv-bar risk" style="height:8px;"></div><div class="ltv-bar-label">$114 at-risk</div></div>
+      </div>
+    </div>
+    <div class="ltv-row">
+      <div class="label"><b>Casual Enthusiast</b><span class="mono">~5.5x swing · $42.3B population-wide</span></div>
+      <div class="ltv-bars">
+        <div class="ltv-bar-group"><div class="ltv-bar baseline" style="height:100px;"></div><div class="ltv-bar-label">$435 baseline</div></div>
+        <div class="ltv-bar-group"><div class="ltv-bar risk" style="height:18px;"></div><div class="ltv-bar-label">$80 at-risk</div></div>
+      </div>
+    </div>
+    <div class="ltv-legend">
+      <span><i style="background:var(--casual);"></i>Baseline LTV (habit / trust intact)</span>
+      <span><i style="background:var(--reliability);opacity:.7;"></i>At-risk LTV (problem unsolved)</span>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">05</span> Solutions & Prototypes</div>
+  <div class="prototypes">
+    <div>
+      <div class="phone"><div class="phone-screen">
+        <div class="phone-time">10:47</div>
+        <div class="phone-date">Saturday, August 22</div>
+        <div class="notif">
+          <div class="row"><span class="title">Workout</span><span class="time">now</span></div>
+          <div class="body">Watch battery critical — outdoor run</div>
+          <div class="sub-card ok">✓ Synced to iCloud<br><span style="color:#8a8a8e;">2.8 mi · 24:10 · last update 12s ago</span></div>
+        </div>
+      </div></div>
+      <p class="proto-caption"><b>Problem 1, v1 —</b> surfaces the sync that already happens at 10% battery, so the user isn't left guessing.</p>
+    </div>
+    <div>
+      <div class="phone"><div class="phone-screen">
+        <div class="phone-time">6:12</div>
+        <div class="phone-date">Saturday, August 22</div>
+        <div class="notif">
+          <div class="row"><span class="title">Fitness</span><span class="time">now</span></div>
+          <div class="body">Behind your usual Saturday pace</div>
+          <div class="sub-card" style="color:#8fb8ff;">A 10-min walk now keeps you on pace<br><span style="color:#8a8a8e;">Based on your typical hourly rhythm</span></div>
+        </div>
+      </div></div>
+      <p class="proto-caption"><b>Problem 2 —</b> replaces a fixed 8pm nudge with one timed to each user's own activity rhythm.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">06</span> Cost vs. Value at Risk</div>
+  <table>
+    <tr><th>Solution</th><th>Duration</th><th>Cost</th><th>Value at Risk</th><th>Cost as % of VaR</th></tr>
+    <tr><td>Sync Confirmation (v1)</td><td>~3–4 months</td><td class="num">$246,200</td><td class="num">$39.6B</td><td class="num">~0.0006%</td></tr>
+    <tr><td>Pace-Based Nudging</td><td>~2–3 months</td><td class="num">$161,350</td><td class="num">$42.3B</td><td class="num">~0.0004%</td></tr>
+    <tr class="total"><td>Combined</td><td>—</td><td class="num">$407,550</td><td class="num">$81.9B</td><td class="num">—</td></tr>
+  </table>
+</section>
+
+<section class="wrap reveal">
+  <div class="eyebrow"><span class="num">07</span> Recommendation</div>
+  <div class="rec-box">
+    <h3>Prioritize Pace-Based Nudging first, Sync Confirmation immediately after</h3>
+    <p>Pace Nudging carries a lower build cost and a slightly higher total value-at-risk — the stronger ROI case on the numbers alone. Its failure mode is also more time-sensitive: gradual habit abandonment compounds quietly, while a bad sync event is a single, visible, more recoverable moment.</p>
+    <p>Sync Confirmation still matters more <em>per user</em> (13.0x vs. 5.5x LTV swing) and directly closes Apple's biggest brand-trust gap. With combined cost under $410K against tens of billions in exposure, the real constraint isn't budget — it's making Apple's internal release-calendar cutoff.</p>
+    <div class="final-note">The model didn't hand down an obvious winner — Fitness Freak and Casual Enthusiast land within a few billion dollars of each other. That's the honest result of the analysis, not a gap in it.</div>
+  </div>
+</section>
+
+<footer class="wrap">Apple Fitness Product Teardown — Personas · Market Sizing · LTV Modeling · Prototyping · ROI</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
