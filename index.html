@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apple Fitness Teardown — Trust and Feedback Gaps at the Edges</title>
+<meta name="description" content="A persona-driven product teardown of Apple Fitness: market sizing, LTV modeling, working prototypes, and a costed prioritization recommendation.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Apple Fitness Teardown — Trust and Feedback Gaps at the Edges">
+<meta property="og:description" content="A persona-driven product teardown of Apple Fitness: market sizing, LTV modeling, working prototypes, and a costed prioritization recommendation.">
+<meta property="og:url" content="https://felixjoseph96-hue.github.io/apple-fitness-teardown/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apple Fitness Teardown — Trust and Feedback Gaps at the Edges">
+<meta name="twitter:description" content="A persona-driven product teardown of Apple Fitness: market sizing, LTV modeling, working prototypes, and a costed prioritization recommendation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -103,13 +111,13 @@
   /* MIXTURE MODEL */
   .stack-bar{display:flex;width:100%;height:38px;border-radius:6px;overflow:hidden;margin:24px 0 10px;}
   .stack-bar div{display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#fff;}
-  .seg-freak{background:var(--freak);width:16.7%;}
-  .seg-casual{background:var(--casual);width:70%;}
-  .seg-delighter{background:var(--delighter);width:13.3%;}
+  .seg-freak{background:var(--freak);width:11.6%;}
+  .seg-casual{background:var(--casual);width:48.5%;}
+  .seg-delighter{background:var(--delighter);width:39.9%;}
   .stack-labels{display:flex;font-size:12px;color:var(--ink-soft);margin-bottom:28px;}
-  .stack-labels div{width:16.7%;text-align:center;}
-  .stack-labels div:nth-child(2){width:70%;}
-  .stack-labels div:nth-child(3){width:13.3%;}
+  .stack-labels div{width:11.6%;text-align:center;}
+  .stack-labels div:nth-child(2){width:48.5%;}
+  .stack-labels div:nth-child(3){width:39.9%;}
 
   .equation{
     background:var(--card);border:1px solid var(--line);border-radius:8px;padding:24px;
@@ -117,6 +125,8 @@
     margin-top:20px;
   }
   .equation .result{color:var(--reliability);font-weight:500;}
+  .equation .step{color:var(--ink-soft);}
+  .equation hr{border:none;border-top:1px dashed var(--line);margin:12px 0;}
 
   /* LTV BARS */
   .ltv-block{margin-top:36px;}
@@ -229,21 +239,21 @@
     <div class="persona-card freak">
       <div class="dot"></div>
       <h4>Fitness Freak</h4>
-      <div class="pct">16.7% · ~28.9M users</div>
+      <div class="pct">11.6% · ~26.5M users</div>
       <p>Deliberate, consistent tracker. Competes with friends, monitors long-term trends. Holds Apple to a Garmin/Whoop-level reliability bar.</p>
       <div class="match"><b>Apple's match</b>Watch Ultra 3 — $799 · "the ultimate sports and adventure watch"</div>
     </div>
     <div class="persona-card casual">
       <div class="dot"></div>
       <h4>Casual Enthusiast</h4>
-      <div class="pct">70.0% · ~119M users</div>
+      <div class="pct">48.5% · ~111.2M users</div>
       <p>Building the habit, not there yet. Relies on incidental activity to hit goals — most exposed to the visibility gap.</p>
       <div class="match"><b>Apple's match</b>Watch Series 11 — $399 · "the ultimate way to watch your health"</div>
     </div>
     <div class="persona-card delighter">
       <div class="dot"></div>
       <h4>Passive Delighter</h4>
-      <div class="pct">13.3% · ~22.6M users</div>
+      <div class="pct">39.9% · ~91.3M users</div>
       <p>Owns it for notifications and status. Occasionally, unintentionally delighted by a closed ring — never chasing one.</p>
       <div class="match"><b>Apple's match</b>Watch SE 3 — $249 · "essential health features, great value"</div>
     </div>
@@ -252,17 +262,29 @@
 
 <section class="wrap reveal">
   <div class="eyebrow"><span class="num">03</span> Sizing the Segments</div>
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Independent research shows fewer than 40% of Apple Watch users close all three rings on a given day. Working backward from that ~37% average — via a weighted mixture model — produces a defensible population split across the three personas.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Independent research shows fewer than 40% of Apple Watch users close all three rings on a given day, and the rate varies meaningfully by age — six published age-bucket figures (35%, 38%, 40%, 34%, 26%, 18%) average to ~31.8%. Working backward from that average — via a weighted mixture model, holding the Fitness Freak : Casual Enthusiast ratio fixed at prior calibration — produces a defensible population split across the three personas, against a base of ~229M Apple Watch users.</p>
 
   <div class="stack-bar">
-    <div class="seg-freak">17%</div><div class="seg-casual">70%</div><div class="seg-delighter">13%</div>
+    <div class="seg-freak">12%</div><div class="seg-casual">48%</div><div class="seg-delighter">40%</div>
   </div>
   <div class="stack-labels"><div>Fitness Freak</div><div>Casual Enthusiast</div><div>Passive Delighter</div></div>
 
   <div class="equation">
-    0.80(F) + 0.30(C) + 0.20(O) = 0.37 &nbsp;&nbsp;·&nbsp;&nbsp; F + C + O = 1<br>
-    Solved with C fixed at 70% (assumption) →<br>
-    <span class="result">F ≈ 16.7%   C ≈ 70.0%   O ≈ 13.3%</span> &nbsp;·&nbsp; check: 0.80(.167)+0.30(.70)+0.20(.133) = 0.37 ✓
+    <span class="step">Step 1 — average the six age-bucket closure rates:</span><br>
+    (35 + 38 + 40 + 34 + 26 + 18) / 6 = 191 / 6 = <b>31.8%</b>
+    <hr>
+    <span class="step">Step 2 — set up the mixture model (F = Fitness Freak, C = Casual Enthusiast, O = Passive Delighter):</span><br>
+    0.80(F) + 0.30(C) + 0.20(O) = 0.318 &nbsp;&nbsp;·&nbsp;&nbsp; F + C + O = 1
+    <hr>
+    <span class="step">Step 3 — hold F : C fixed at prior calibration (1 : 4.19), so C = 4.19F and O = 1 − 5.19F:</span><br>
+    0.80F + 0.30(4.19F) + 0.20(1 − 5.19F) = 0.318<br>
+    0.80F + 1.257F + 0.20 − 1.038F = 0.318<br>
+    1.019F = 0.118&nbsp;&nbsp;→&nbsp;&nbsp;F = 0.118 / 1.019 = 0.1158
+    <hr>
+    <span class="step">Step 4 — back-solve C and O, then apply to the 229M base:</span><br>
+    C = 4.19 × 0.1158 = 0.4854&nbsp;&nbsp;·&nbsp;&nbsp;O = 1 − 0.1158 − 0.4854 = 0.3988<br>
+    <span class="result">F ≈ 11.6% (26.5M)   C ≈ 48.5% (111.2M)   O ≈ 39.9% (91.3M)</span><br>
+    check: 0.80(.116) + 0.30(.485) + 0.20(.399) = 0.318 ✓
   </div>
 </section>
 
@@ -272,14 +294,14 @@
 
   <div class="ltv-block">
     <div class="ltv-row">
-      <div class="label"><b>Fitness Freak</b><span class="mono">~13.0x swing · $39.6B population-wide</span></div>
+      <div class="label"><b>Fitness Freak</b><span class="mono">~13.0x swing · $36.3B population-wide</span></div>
       <div class="ltv-bars">
         <div class="ltv-bar-group"><div class="ltv-bar baseline" style="height:100px;"></div><div class="ltv-bar-label">$1,484 baseline</div></div>
         <div class="ltv-bar-group"><div class="ltv-bar risk" style="height:8px;"></div><div class="ltv-bar-label">$114 at-risk</div></div>
       </div>
     </div>
     <div class="ltv-row">
-      <div class="label"><b>Casual Enthusiast</b><span class="mono">~5.5x swing · $42.3B population-wide</span></div>
+      <div class="label"><b>Casual Enthusiast</b><span class="mono">~5.5x swing · $39.5B population-wide</span></div>
       <div class="ltv-bars">
         <div class="ltv-bar-group"><div class="ltv-bar baseline" style="height:100px;"></div><div class="ltv-bar-label">$435 baseline</div></div>
         <div class="ltv-bar-group"><div class="ltv-bar risk" style="height:18px;"></div><div class="ltv-bar-label">$80 at-risk</div></div>
@@ -326,9 +348,9 @@
   <div class="eyebrow"><span class="num">06</span> Cost vs. Value at Risk</div>
   <table>
     <tr><th>Solution</th><th>Duration</th><th>Cost</th><th>Value at Risk</th><th>Cost as % of VaR</th></tr>
-    <tr><td>Sync Confirmation (v1)</td><td>~3–4 months</td><td class="num">$246,200</td><td class="num">$39.6B</td><td class="num">~0.0006%</td></tr>
-    <tr><td>Pace-Based Nudging</td><td>~2–3 months</td><td class="num">$161,350</td><td class="num">$42.3B</td><td class="num">~0.0004%</td></tr>
-    <tr class="total"><td>Combined</td><td>—</td><td class="num">$407,550</td><td class="num">$81.9B</td><td class="num">—</td></tr>
+    <tr><td>Sync Confirmation (v1)</td><td>~3–4 months</td><td class="num">$246,200</td><td class="num">$36.3B</td><td class="num">~0.0007%</td></tr>
+    <tr><td>Pace-Based Nudging</td><td>~2–3 months</td><td class="num">$161,350</td><td class="num">$39.5B</td><td class="num">~0.0004%</td></tr>
+    <tr class="total"><td>Combined</td><td>—</td><td class="num">$407,550</td><td class="num">$75.8B</td><td class="num">—</td></tr>
   </table>
 </section>
 
