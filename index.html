@@ -312,6 +312,17 @@
       <span><i style="background:var(--reliability);opacity:.7;"></i>At-risk LTV (problem unsolved)</span>
     </div>
   </div>
+
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>The figures above are a ceiling, not an estimate</b> — they assume 100% of a segment hits the failure badly enough to drop to the at-risk LTV, which isn't realistic. Applying an explicit incidence rate (the share of the segment actually affected in a given year) turns the ceiling into a probability-weighted range. There's no hard data behind these specific rates — they're shown as a sensitivity band, not a single invented number.</p>
+
+  <table>
+    <tr><th>Incidence rate</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Combined</th></tr>
+    <tr><td>10%</td><td class="num">$3.6B</td><td class="num">$4.0B</td><td class="num">$7.6B</td></tr>
+    <tr><td>25%</td><td class="num">$9.1B</td><td class="num">$9.9B</td><td class="num">$19.0B</td></tr>
+    <tr><td>50%</td><td class="num">$18.2B</td><td class="num">$19.7B</td><td class="num">$37.9B</td></tr>
+    <tr class="total"><td>100% (ceiling, above)</td><td class="num">$36.3B</td><td class="num">$39.5B</td><td class="num">$75.8B</td></tr>
+  </table>
+  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Even at a conservative 10% incidence, combined value-at-risk (~$7.6B) still dwarfs the combined build cost (~$408K, see section 06) by four orders of magnitude — the "cost is negligible" conclusion survives the correction.</p>
 </section>
 
 <section class="wrap reveal">
