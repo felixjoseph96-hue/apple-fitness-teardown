@@ -317,7 +317,15 @@
 
   <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:20px;">Fitness Freak's $1,484 comes from the Ultra 3's $228/yr annualized cost held over a 6.5-year retention window; the $114 at-risk figure assumes they churn within 6 months of a bad sync experience. Casual Enthusiast's numbers run the same way off the Series 11 plus a ~30% Fitness+ attach rate. I'm more confident in the hardware math (it's real Apple pricing) than in the retention-window assumptions, which I picked to be internally consistent rather than pulled from a benchmark.</p>
 
-  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">One honest caveat: the billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. If I assume a more realistic 10&ndash;25% of each segment is actually affected in a given year, the real exposure lands closer to $8&ndash;19B combined instead of $75.8B. Even at the low end, that's still tens of thousands of times the ~$408K it costs to build both fixes, so the "cost is negligible" conclusion holds either way.</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">One honest caveat: the billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. Here's what the exposure looks like at a more realistic incidence rate, the share of each segment that actually experiences the failure badly enough in a given year to churn or abandon the habit:</p>
+  <table>
+    <tr><th>Incidence rate</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Combined</th></tr>
+    <tr><td>10%</td><td class="num">$3.6B</td><td class="num">$4.0B</td><td class="num">$7.6B</td></tr>
+    <tr><td>25%</td><td class="num">$9.1B</td><td class="num">$9.9B</td><td class="num">$19.0B</td></tr>
+    <tr><td>50%</td><td class="num">$18.2B</td><td class="num">$19.7B</td><td class="num">$37.9B</td></tr>
+    <tr class="total"><td>100% (ceiling, above)</td><td class="num">$36.3B</td><td class="num">$39.5B</td><td class="num">$75.8B</td></tr>
+  </table>
+  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">I don't have real data behind the 10/25/50% rows, so treat them as a plausibility range rather than a forecast. What matters is that even at the conservative end, $7.6B is still tens of thousands of times the ~$408K it costs to build both fixes, so the "cost is negligible" conclusion holds up either way.</p>
 </section>
 
 <section class="wrap reveal">
