@@ -287,14 +287,7 @@
     check: 0.80(.116) + 0.30(.485) + 0.20(.399) = 0.318 ✓
   </div>
 
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>Sensitivity check.</b> The 1 : 4.19 Fitness Freak to Casual Enthusiast ratio above is a modeling choice, not something measured. Here's how the split moves if that ratio is off by ±20%:</p>
-  <table>
-    <tr><th>F : C ratio</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Passive Delighter</th><th>Combined ceiling VaR</th></tr>
-    <tr><td>1 : 3.35 (20% lower)</td><td class="num">12.6% (28.9M)</td><td class="num">42.3% (96.8M)</td><td class="num">45.1% (103.3M)</td><td class="num">$74.0B</td></tr>
-    <tr class="total"><td>1 : 4.19 (base)</td><td class="num">11.6% (26.5M)</td><td class="num">48.5% (111.2M)</td><td class="num">39.9% (91.3M)</td><td class="num">$75.8B</td></tr>
-    <tr><td>1 : 5.03 (20% higher)</td><td class="num">10.7% (24.5M)</td><td class="num">53.8% (123.2M)</td><td class="num">35.5% (81.3M)</td><td class="num">$77.3B</td></tr>
-  </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">The individual segment split moves quite a bit across this range, but combined value-at-risk only shifts about 2%. The two exposed segments are trading share with each other, so the total holds steady even as which persona carries more of the exposure changes. The persona sizing isn't precise, but the headline conclusion, that both problems carry comparably large exposure, doesn't hinge on getting this ratio exactly right.</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:20px;">I picked the 1 : 4.19 Fitness Freak to Casual ratio myself, so I pressure-tested it by flexing it ±20% and re-running the math. Each persona's share swings by several points, but the combined value-at-risk between the two exposed segments stays within 2% ($74.0B to $77.3B either way). That's the part I actually trust: which persona "owns" more of the exposure is fuzzy, but both problems being comparably large isn't.</p>
 </section>
 
 <section class="wrap reveal">
@@ -322,25 +315,9 @@
     </div>
   </div>
 
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;">Here's where those LTV numbers come from: annualized hardware spend plus Fitness+ attach, run across a full retention window and a shortened one.</p>
-  <table>
-    <tr><th>Segment</th><th>Hardware / price</th><th>Upgrade cycle</th><th>Baseline retention</th><th>At-risk retention</th></tr>
-    <tr><td>Fitness Freak</td><td>Ultra 3 · $799</td><td>3.5 yr ($228/yr)</td><td>6.5 yr → $1,484</td><td>0.5 yr (churn) → $114</td></tr>
-    <tr><td>Casual Enthusiast</td><td>Series 11 · $399</td><td>5 yr ($80/yr) + ~30% Fitness+ attach (~$36)</td><td>5 yr → $435</td><td>1 yr, no Fitness+ → $80</td></tr>
-    <tr><td>Passive Delighter</td><td>SE 3 · $249</td><td>n/a (single purchase)</td><td>1 yr → $249 (floor)</td><td>n/a (not exposed)</td></tr>
-  </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Hardware prices are Apple's real published pricing. Upgrade cycles, retention windows, and the Fitness+ attach and churn mix are stated assumptions, not sourced figures. See Methodology & Sources below.</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:20px;">Fitness Freak's $1,484 comes from the Ultra 3's $228/yr annualized cost held over a 6.5-year retention window; the $114 at-risk figure assumes they churn within 6 months of a bad sync experience. Casual Enthusiast's numbers run the same way off the Series 11 plus a ~30% Fitness+ attach rate. I'm more confident in the hardware math (it's real Apple pricing) than in the retention-window assumptions, which I picked to be internally consistent rather than pulled from a benchmark.</p>
 
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>One caveat on the numbers above: they're a ceiling.</b> They assume 100% of a segment hits the failure badly enough to drop to the at-risk LTV, which won't actually happen. Applying an incidence rate (the share of the segment actually affected in a given year) turns that ceiling into a more realistic, probability-weighted range. There's no hard data behind the specific rates below, so treat them as a sensitivity band rather than a precise estimate.</p>
-
-  <table>
-    <tr><th>Incidence rate</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Combined</th></tr>
-    <tr><td>10%</td><td class="num">$3.6B</td><td class="num">$4.0B</td><td class="num">$7.6B</td></tr>
-    <tr><td>25%</td><td class="num">$9.1B</td><td class="num">$9.9B</td><td class="num">$19.0B</td></tr>
-    <tr><td>50%</td><td class="num">$18.2B</td><td class="num">$19.7B</td><td class="num">$37.9B</td></tr>
-    <tr class="total"><td>100% (ceiling, above)</td><td class="num">$36.3B</td><td class="num">$39.5B</td><td class="num">$75.8B</td></tr>
-  </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Even at a conservative 10% incidence, combined value-at-risk (~$7.6B) still dwarfs the combined build cost (~$408K, see section 07) by four orders of magnitude. The "cost is negligible" conclusion holds up even after the correction.</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">One honest caveat: the billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. If I assume a more realistic 10&ndash;25% of each segment is actually affected in a given year, the real exposure lands closer to $8&ndash;19B combined instead of $75.8B. Even at the low end, that's still tens of thousands of times the ~$408K it costs to build both fixes, so the "cost is negligible" conclusion holds either way.</p>
 </section>
 
 <section class="wrap reveal">
@@ -405,21 +382,14 @@
   <div class="rec-box">
     <h3>Prioritize Pace-Based Nudging first, Sync Confirmation immediately after</h3>
     <p>Pace Nudging carries a lower build cost and a slightly higher total value-at-risk, so it's the stronger ROI case on the numbers alone. Its failure mode is also more time-sensitive: gradual habit abandonment compounds quietly, while a bad sync event is a single, visible moment that's easier to recover from.</p>
-    <p>Sync Confirmation still matters more <em>per user</em> (13.0x vs. 5.5x LTV swing) and directly closes Apple's biggest brand-trust gap. Combined cost is under $410K against tens of billions in ceiling exposure, or about $7.6B even at a conservative 10% incidence rate. Budget isn't the real constraint here; making Apple's internal release-calendar cutoff is.</p>
-    <div class="final-note">The model didn't hand down an obvious winner. Fitness Freak and Casual Enthusiast land within a few billion dollars of each other, and that gap holds up across the sensitivity checks above. That's an honest result, not a gap in the analysis.</div>
+    <p>Sync Confirmation still matters more <em>per user</em> (13.0x vs. 5.5x LTV swing) and directly closes Apple's biggest brand-trust gap. Combined cost is under $410K against tens of billions in ceiling exposure, or about $7.6B even at a conservative 10% incidence rate. The real constraint here is Apple's internal release-calendar cutoff, not budget.</p>
+    <div class="final-note">The model didn't hand down an obvious winner. Fitness Freak and Casual Enthusiast land within a few billion dollars of each other, and that gap held up when I stress-tested the underlying assumptions. I'd rather report that honestly than force a cleaner story.</div>
   </div>
 </section>
 
 <section class="wrap reveal">
-  <div class="eyebrow">Methodology &amp; Sources</div>
-  <p style="color:var(--ink-soft);font-size:13.5px;max-width:680px;">This is a self-directed teardown meant to show how I think through a product problem, not a research publication. Most of the numbers below are stated assumptions, and I've flagged them as such throughout rather than dressing them up as fact.</p>
-  <ul style="color:var(--ink-soft);font-size:13.5px;max-width:680px;line-height:1.7;padding-left:18px;">
-    <li>The opening quote is illustrative, drawn from my own use of the product. It isn't a cited user interview.</li>
-    <li>Apple has publicly reported that frequent ring-closers (closing all three at least half the time) see meaningfully better sleep, resting heart rate, and stress outcomes than infrequent closers (10% of the time or less). See Apple Newsroom, <a href="https://www.apple.com/newsroom/2025/04/get-active-with-apple-watch/" target="_blank" rel="noopener">"Get active with Apple Watch"</a> (April 2025). That release doesn't publish an exact population-wide closure rate or a breakdown by age; the ~31.8% average and the six age-bucket figures used in this model come from my own research notes, not from that release.</li>
-    <li>Apple Watch's installed base publicly crossed 100M in 2021 (<a href="https://www.imore.com/counterpoint-research-apple-now-has-100-million-user-base-apple-watch" target="_blank" rel="noopener">Counterpoint Research, via iMore</a>). The ~229M figure used here extrapolates continued unit growth through 2026 and is my own working estimate, not a published 2026 figure. It's a reasonable ballpark, not a precise count.</li>
-    <li>Watch SE 3, Series 11, and Ultra 3 pricing and positioning language are Apple's real, current published pricing.</li>
-    <li>Upgrade cycles, retention windows, Fitness+ attach and churn mix, engineering team sizes, rates, and timelines are my own stated assumptions. I picked them to be defensible and internally consistent, not because they're sourced from Apple financials or public benchmarks.</li>
-  </ul>
+  <div class="eyebrow">A Note on the Numbers</div>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:680px;">I built this to show how I think through a product problem, not as a research paper, so it's worth being upfront about where the hard data ends and my own judgment takes over. The opening quote is from my own experience with the product, not an interview. Apple has publicly shown that frequent ring-closers sleep better and run healthier resting heart rates than infrequent ones (<a href="https://www.apple.com/newsroom/2025/04/get-active-with-apple-watch/" target="_blank" rel="noopener">Apple Newsroom, April 2025</a>), but they haven't published the exact closure rate or an age breakdown, so the 31.8% average and the six age-bucket figures behind it are from my own notes. Same with the 229M user base: Apple Watch crossed 100M users back in 2021 (<a href="https://www.imore.com/counterpoint-research-apple-now-has-100-million-user-base-apple-watch" target="_blank" rel="noopener">Counterpoint Research</a>), and I extrapolated forward to 2026 myself rather than finding a clean updated figure. Hardware pricing is pulled straight from Apple's current lineup. Everything else (retention windows, Fitness+ attach rates, team sizes, build timelines) is my own assumption, built to be internally consistent and defensible under questioning rather than lifted from a benchmark I could cite.</p>
 </section>
 
 <footer class="wrap">Apple Fitness Product Teardown · Personas · Market Sizing · LTV Modeling · Prototyping · ROI</footer>
