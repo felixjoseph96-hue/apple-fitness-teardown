@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apple Fitness Teardown — Trust and Feedback Gaps at the Edges</title>
+<title>Apple Fitness Teardown: Trust and Feedback Gaps at the Edges</title>
 <meta name="description" content="A persona-driven product teardown of Apple Fitness: market sizing, LTV modeling, working prototypes, and a costed prioritization recommendation.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Apple Fitness Teardown — Trust and Feedback Gaps at the Edges">
+<meta property="og:title" content="Apple Fitness Teardown: Trust and Feedback Gaps at the Edges">
 <meta property="og:description" content="A persona-driven product teardown of Apple Fitness: market sizing, LTV modeling, working prototypes, and a costed prioritization recommendation.">
 <meta property="og:url" content="https://felixjoseph96-hue.github.io/apple-fitness-teardown/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Apple Fitness Teardown — Trust and Feedback Gaps at the Edges">
+<meta name="twitter:title" content="Apple Fitness Teardown: Trust and Feedback Gaps at the Edges">
 <meta name="twitter:description" content="A persona-driven product teardown of Apple Fitness: market sizing, LTV modeling, working prototypes, and a costed prioritization recommendation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -196,8 +196,8 @@
   <p class="role">Product Management Case Study</p>
 
   <div class="anecdote">
-    "When I'm about to hit a goal on a run, my watch dies — and I have no idea whether the workout saved. And on an average day, I can't tell if my walking is even contributing to my goals until it's already too late to do anything about it."
-    <span>— the two moments this teardown starts from</span>
+    "When I'm about to hit a goal on a run, my watch dies, and I have no idea whether the workout saved. And on an average day, I can't tell if my walking is even contributing to my goals until it's already too late to do anything about it."
+    <span>The two moments this teardown starts from</span>
   </div>
 
   <div class="ledger">
@@ -220,13 +220,13 @@
     <div class="problem-card p1">
       <span class="tag">Reliability</span>
       <h3>Sync uncertainty</h3>
-      <p>When a Watch dies mid-run — often near a goal — there's no way to know if the workout was captured until it's recharged. Phone-based fallback tracking is also unreliable.</p>
+      <p>When a Watch dies mid-run, often near a goal, there's no way to know if the workout was captured until it's recharged. Phone-based fallback tracking is also unreliable.</p>
       <div class="persona-hit">Hits hardest → Fitness Freak</div>
     </div>
     <div class="problem-card p2">
       <span class="tag">Feedback</span>
       <h3>Goal-visibility gap</h3>
-      <p>Incidental activity doesn't visibly count toward daily goals until end of day. Existing nudges ("great progress!") often arrive too late — around 8pm — to act on.</p>
+      <p>Incidental activity doesn't visibly count toward daily goals until end of day. Existing nudges ("great progress!") often arrive too late, around 8pm, to act on.</p>
       <div class="persona-hit">Hits hardest → Casual Enthusiast</div>
     </div>
   </div>
@@ -234,35 +234,35 @@
 
 <section class="wrap reveal">
   <div class="eyebrow"><span class="num">02</span> Personas</div>
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:560px;">Aligns, unexpectedly, with Apple's own hardware lineup — the Watch tiers already segment by engagement level, using language that mirrors these three personas. That's a useful consistency check, not proof the personas are correct.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:560px;">These line up, surprisingly well, with Apple's own hardware tiers, which already segment by engagement level using language that mirrors the three personas below. It's a nice consistency check, though not evidence the personas themselves are right.</p>
   <div class="personas">
     <div class="persona-card freak">
       <div class="dot"></div>
       <h4>Fitness Freak</h4>
       <div class="pct">11.6% · ~26.5M users</div>
       <p>Deliberate, consistent tracker. Competes with friends, monitors long-term trends. Holds Apple to a Garmin/Whoop-level reliability bar.</p>
-      <div class="match"><b>Apple's match</b>Watch Ultra 3 — $799 · "the ultimate sports and adventure watch"</div>
+      <div class="match"><b>Apple's match</b>Watch Ultra 3 · $799 · "the ultimate sports and adventure watch"</div>
     </div>
     <div class="persona-card casual">
       <div class="dot"></div>
       <h4>Casual Enthusiast</h4>
       <div class="pct">48.5% · ~111.2M users</div>
-      <p>Building the habit, not there yet. Relies on incidental activity to hit goals — most exposed to the visibility gap.</p>
-      <div class="match"><b>Apple's match</b>Watch Series 11 — $399 · "the ultimate way to watch your health"</div>
+      <p>Building the habit, not there yet. Relies on incidental activity to hit goals, which makes them the most exposed to the visibility gap.</p>
+      <div class="match"><b>Apple's match</b>Watch Series 11 · $399 · "the ultimate way to watch your health"</div>
     </div>
     <div class="persona-card delighter">
       <div class="dot"></div>
       <h4>Passive Delighter</h4>
       <div class="pct">39.9% · ~91.3M users</div>
-      <p>Owns it for notifications and status. Occasionally, unintentionally delighted by a closed ring — never chasing one.</p>
-      <div class="match"><b>Apple's match</b>Watch SE 3 — $249 · "essential health features, great value"</div>
+      <p>Owns it for notifications and status. Occasionally, unintentionally delighted by a closed ring, but never chasing one.</p>
+      <div class="match"><b>Apple's match</b>Watch SE 3 · $249 · "essential health features, great value"</div>
     </div>
   </div>
 </section>
 
 <section class="wrap reveal">
   <div class="eyebrow"><span class="num">03</span> Sizing the Segments</div>
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Independent research shows fewer than 40% of Apple Watch users close all three rings on a given day, and the rate varies meaningfully by age — six published age-bucket figures (35%, 38%, 40%, 34%, 26%, 18%) average to ~31.8%. Working backward from that average — via a weighted mixture model, holding the Fitness Freak : Casual Enthusiast ratio fixed at prior calibration — produces a defensible population split across the three personas, against a base of ~229M Apple Watch users.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Fewer than 40% of Apple Watch users close all three rings on a given day, and that rate shifts quite a bit by age. Six published age-bucket figures (35%, 38%, 40%, 34%, 26%, 18%) average out to roughly 31.8%. A weighted mixture model, solved against a base of roughly 229M Apple Watch users, works backward from that average to split the base into the three personas below.</p>
 
   <div class="stack-bar">
     <div class="seg-freak">12%</div><div class="seg-casual">48%</div><div class="seg-delighter">40%</div>
@@ -270,36 +270,36 @@
   <div class="stack-labels"><div>Fitness Freak</div><div>Casual Enthusiast</div><div>Passive Delighter</div></div>
 
   <div class="equation">
-    <span class="step">Step 1 — average the six age-bucket closure rates:</span><br>
+    <span class="step">Step 1: average the six age-bucket closure rates.</span><br>
     (35 + 38 + 40 + 34 + 26 + 18) / 6 = 191 / 6 = <b>31.8%</b>
     <hr>
-    <span class="step">Step 2 — set up the mixture model (F = Fitness Freak, C = Casual Enthusiast, O = Passive Delighter):</span><br>
+    <span class="step">Step 2: set up the mixture model (F = Fitness Freak, C = Casual Enthusiast, O = Passive Delighter).</span><br>
     0.80(F) + 0.30(C) + 0.20(O) = 0.318 &nbsp;&nbsp;·&nbsp;&nbsp; F + C + O = 1
     <hr>
-    <span class="step">Step 3 — hold F : C fixed at prior calibration (1 : 4.19), so C = 4.19F and O = 1 − 5.19F:</span><br>
+    <span class="step">Step 3: hold F : C fixed at prior calibration (1 : 4.19), so C = 4.19F and O = 1 − 5.19F.</span><br>
     0.80F + 0.30(4.19F) + 0.20(1 − 5.19F) = 0.318<br>
     0.80F + 1.257F + 0.20 − 1.038F = 0.318<br>
     1.019F = 0.118&nbsp;&nbsp;→&nbsp;&nbsp;F = 0.118 / 1.019 = 0.1158
     <hr>
-    <span class="step">Step 4 — back-solve C and O, then apply to the 229M base:</span><br>
+    <span class="step">Step 4: back-solve C and O, then apply both to the 229M base.</span><br>
     C = 4.19 × 0.1158 = 0.4854&nbsp;&nbsp;·&nbsp;&nbsp;O = 1 − 0.1158 − 0.4854 = 0.3988<br>
     <span class="result">F ≈ 11.6% (26.5M)   C ≈ 48.5% (111.2M)   O ≈ 39.9% (91.3M)</span><br>
     check: 0.80(.116) + 0.30(.485) + 0.20(.399) = 0.318 ✓
   </div>
 
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>Sensitivity check:</b> the split above holds the Fitness Freak : Casual Enthusiast ratio fixed at 1 : 4.19 (a modeling choice, not a measured fact). Flexing that ratio ±20% shows how much the conclusion depends on it:</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>Sensitivity check.</b> The 1 : 4.19 Fitness Freak to Casual Enthusiast ratio above is a modeling choice, not something measured. Here's how the split moves if that ratio is off by ±20%:</p>
   <table>
     <tr><th>F : C ratio</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Passive Delighter</th><th>Combined ceiling VaR</th></tr>
-    <tr><td>1 : 3.35 (−20%)</td><td class="num">12.6% (28.9M)</td><td class="num">42.3% (96.8M)</td><td class="num">45.1% (103.3M)</td><td class="num">$74.0B</td></tr>
+    <tr><td>1 : 3.35 (20% lower)</td><td class="num">12.6% (28.9M)</td><td class="num">42.3% (96.8M)</td><td class="num">45.1% (103.3M)</td><td class="num">$74.0B</td></tr>
     <tr class="total"><td>1 : 4.19 (base)</td><td class="num">11.6% (26.5M)</td><td class="num">48.5% (111.2M)</td><td class="num">39.9% (91.3M)</td><td class="num">$75.8B</td></tr>
-    <tr><td>1 : 5.03 (+20%)</td><td class="num">10.7% (24.5M)</td><td class="num">53.8% (123.2M)</td><td class="num">35.5% (81.3M)</td><td class="num">$77.3B</td></tr>
+    <tr><td>1 : 5.03 (20% higher)</td><td class="num">10.7% (24.5M)</td><td class="num">53.8% (123.2M)</td><td class="num">35.5% (81.3M)</td><td class="num">$77.3B</td></tr>
   </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">The individual segment split moves meaningfully across this range, but <b>combined value-at-risk barely moves (±2%)</b> — the two exposed segments trade share with each other, so the total stays stable even though which persona "owns" more of the number shifts. That's a sign the headline conclusion (both problems carry comparable, large exposure) is robust to this assumption, even if the persona sizing itself isn't precise.</p>
+  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">The individual segment split moves quite a bit across this range, but combined value-at-risk only shifts about 2%. The two exposed segments are trading share with each other, so the total holds steady even as which persona carries more of the exposure changes. The persona sizing isn't precise, but the headline conclusion, that both problems carry comparably large exposure, doesn't hinge on getting this ratio exactly right.</p>
 </section>
 
 <section class="wrap reveal">
   <div class="eyebrow"><span class="num">04</span> Value at Risk</div>
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Modeling lifetime value under two scenarios per segment — a normal trajectory, and one where each problem goes unsolved — surfaces where the real financial exposure sits.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Modeling lifetime value under two scenarios per segment, a normal trajectory and one where each problem goes unsolved, surfaces where the real financial exposure sits.</p>
 
   <div class="ltv-block">
     <div class="ltv-row">
@@ -322,16 +322,16 @@
     </div>
   </div>
 
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;">Where the LTV figures come from — annualized hardware spend plus Fitness+ attach, run across a baseline retention window vs. a shortened one:</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;">Here's where those LTV numbers come from: annualized hardware spend plus Fitness+ attach, run across a full retention window and a shortened one.</p>
   <table>
     <tr><th>Segment</th><th>Hardware / price</th><th>Upgrade cycle</th><th>Baseline retention</th><th>At-risk retention</th></tr>
     <tr><td>Fitness Freak</td><td>Ultra 3 · $799</td><td>3.5 yr ($228/yr)</td><td>6.5 yr → $1,484</td><td>0.5 yr (churn) → $114</td></tr>
     <tr><td>Casual Enthusiast</td><td>Series 11 · $399</td><td>5 yr ($80/yr) + ~30% Fitness+ attach (~$36)</td><td>5 yr → $435</td><td>1 yr, no Fitness+ → $80</td></tr>
-    <tr><td>Passive Delighter</td><td>SE 3 · $249</td><td>n/a (single purchase)</td><td>1 yr → $249 (floor)</td><td>n/a — not exposed</td></tr>
+    <tr><td>Passive Delighter</td><td>SE 3 · $249</td><td>n/a (single purchase)</td><td>1 yr → $249 (floor)</td><td>n/a (not exposed)</td></tr>
   </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Hardware prices are Apple's real published pricing; upgrade cycles, retention windows, and Fitness+ attach/churn mix are stated assumptions, not sourced figures — see Methodology & Sources below.</p>
+  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Hardware prices are Apple's real published pricing. Upgrade cycles, retention windows, and the Fitness+ attach and churn mix are stated assumptions, not sourced figures. See Methodology & Sources below.</p>
 
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>The figures above are a ceiling, not an estimate</b> — they assume 100% of a segment hits the failure badly enough to drop to the at-risk LTV, which isn't realistic. Applying an explicit incidence rate (the share of the segment actually affected in a given year) turns the ceiling into a probability-weighted range. There's no hard data behind these specific rates — they're shown as a sensitivity band, not a single invented number.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-top:28px;"><b>One caveat on the numbers above: they're a ceiling.</b> They assume 100% of a segment hits the failure badly enough to drop to the at-risk LTV, which won't actually happen. Applying an incidence rate (the share of the segment actually affected in a given year) turns that ceiling into a more realistic, probability-weighted range. There's no hard data behind the specific rates below, so treat them as a sensitivity band rather than a precise estimate.</p>
 
   <table>
     <tr><th>Incidence rate</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Combined</th></tr>
@@ -340,7 +340,7 @@
     <tr><td>50%</td><td class="num">$18.2B</td><td class="num">$19.7B</td><td class="num">$37.9B</td></tr>
     <tr class="total"><td>100% (ceiling, above)</td><td class="num">$36.3B</td><td class="num">$39.5B</td><td class="num">$75.8B</td></tr>
   </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Even at a conservative 10% incidence, combined value-at-risk (~$7.6B) still dwarfs the combined build cost (~$408K, see section 06) by four orders of magnitude — the "cost is negligible" conclusion survives the correction.</p>
+  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Even at a conservative 10% incidence, combined value-at-risk (~$7.6B) still dwarfs the combined build cost (~$408K, see section 07) by four orders of magnitude. The "cost is negligible" conclusion holds up even after the correction.</p>
 </section>
 
 <section class="wrap reveal">
@@ -352,11 +352,11 @@
         <div class="phone-date">Saturday, August 22</div>
         <div class="notif">
           <div class="row"><span class="title">Workout</span><span class="time">now</span></div>
-          <div class="body">Watch battery critical — outdoor run</div>
+          <div class="body">Watch battery critical, outdoor run</div>
           <div class="sub-card ok">✓ Synced to iCloud<br><span style="color:#8a8a8e;">2.8 mi · 24:10 · last update 12s ago</span></div>
         </div>
       </div></div>
-      <p class="proto-caption"><b>Problem 1, v1 —</b> surfaces the sync that already happens at 10% battery, so the user isn't left guessing.</p>
+      <p class="proto-caption"><b>Problem 1, v1:</b> surfaces the sync that already happens at 10% battery, so the user isn't left guessing.</p>
     </div>
     <div>
       <div class="phone"><div class="phone-screen">
@@ -368,7 +368,7 @@
           <div class="sub-card" style="color:#8fb8ff;">A 10-min walk now keeps you on pace<br><span style="color:#8a8a8e;">Based on your typical hourly rhythm</span></div>
         </div>
       </div></div>
-      <p class="proto-caption"><b>Problem 2 —</b> replaces a fixed 8pm nudge with one timed to each user's own activity rhythm.</p>
+      <p class="proto-caption"><b>Problem 2:</b> replaces a fixed 8pm nudge with one timed to each user's own activity rhythm.</p>
     </div>
   </div>
 </section>
@@ -396,7 +396,7 @@
     <tr><th>Solution</th><th>Duration</th><th>Cost</th><th>Value at Risk</th><th>Cost as % of VaR</th></tr>
     <tr><td>Sync Confirmation (v1)</td><td>~3–4 months</td><td class="num">$246,200</td><td class="num">$36.3B</td><td class="num">~0.0007%</td></tr>
     <tr><td>Pace-Based Nudging</td><td>~2–3 months</td><td class="num">$161,350</td><td class="num">$39.5B</td><td class="num">~0.0004%</td></tr>
-    <tr class="total"><td>Combined</td><td>—</td><td class="num">$407,550</td><td class="num">$75.8B</td><td class="num">—</td></tr>
+    <tr class="total"><td>Combined</td><td>n/a</td><td class="num">$407,550</td><td class="num">$75.8B</td><td class="num">n/a</td></tr>
   </table>
 </section>
 
@@ -404,25 +404,25 @@
   <div class="eyebrow"><span class="num">08</span> Recommendation</div>
   <div class="rec-box">
     <h3>Prioritize Pace-Based Nudging first, Sync Confirmation immediately after</h3>
-    <p>Pace Nudging carries a lower build cost and a slightly higher total value-at-risk — the stronger ROI case on the numbers alone. Its failure mode is also more time-sensitive: gradual habit abandonment compounds quietly, while a bad sync event is a single, visible, more recoverable moment.</p>
-    <p>Sync Confirmation still matters more <em>per user</em> (13.0x vs. 5.5x LTV swing) and directly closes Apple's biggest brand-trust gap. With combined cost under $410K against tens of billions in ceiling exposure (or ~$7.6B even at a conservative 10% incidence rate), the real constraint isn't budget — it's making Apple's internal release-calendar cutoff.</p>
-    <div class="final-note">The model didn't hand down an obvious winner — Fitness Freak and Casual Enthusiast land within a few billion dollars of each other, and that gap is stable across the sensitivity checks above. That's the honest result of the analysis, not a gap in it.</div>
+    <p>Pace Nudging carries a lower build cost and a slightly higher total value-at-risk, so it's the stronger ROI case on the numbers alone. Its failure mode is also more time-sensitive: gradual habit abandonment compounds quietly, while a bad sync event is a single, visible moment that's easier to recover from.</p>
+    <p>Sync Confirmation still matters more <em>per user</em> (13.0x vs. 5.5x LTV swing) and directly closes Apple's biggest brand-trust gap. Combined cost is under $410K against tens of billions in ceiling exposure, or about $7.6B even at a conservative 10% incidence rate. Budget isn't the real constraint here; making Apple's internal release-calendar cutoff is.</p>
+    <div class="final-note">The model didn't hand down an obvious winner. Fitness Freak and Casual Enthusiast land within a few billion dollars of each other, and that gap holds up across the sensitivity checks above. That's an honest result, not a gap in the analysis.</div>
   </div>
 </section>
 
 <section class="wrap reveal">
   <div class="eyebrow">Methodology &amp; Sources</div>
-  <p style="color:var(--ink-soft);font-size:13.5px;max-width:680px;">This is a self-directed product teardown built to demonstrate PM reasoning, not a research publication — most inputs are stated assumptions, flagged as such throughout rather than presented as fact.</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:680px;">This is a self-directed teardown meant to show how I think through a product problem, not a research publication. Most of the numbers below are stated assumptions, and I've flagged them as such throughout rather than dressing them up as fact.</p>
   <ul style="color:var(--ink-soft);font-size:13.5px;max-width:680px;line-height:1.7;padding-left:18px;">
-    <li>The opening anecdote is illustrative, drawn from personal use of the product, not a cited user interview.</li>
-    <li>Apple has publicly reported that frequent ring-closers (closing all three ≥50% of the time) see meaningfully better sleep, resting-heart-rate, and stress outcomes than infrequent closers (≤10% of the time) — see Apple Newsroom, <a href="https://www.apple.com/newsroom/2025/04/get-active-with-apple-watch/" target="_blank" rel="noopener">"Get active with Apple Watch"</a> (April 2025). That release doesn't publish an exact population-wide closure rate or an age-bucket breakdown; the ~31.8% average and the six age-bucket figures used in this model are inputs from the author's own research notes, not quotes from that release.</li>
-    <li>Apple Watch's installed base publicly crossed 100M in 2021 (<a href="https://www.imore.com/counterpoint-research-apple-now-has-100-million-user-base-apple-watch" target="_blank" rel="noopener">Counterpoint Research, via iMore</a>). The ~229M figure used here extrapolates continued unit growth through 2026 and is the author's own working estimate, not a published 2026 figure — treat it as directionally reasonable rather than precise.</li>
-    <li>Watch SE 3 / Series 11 / Ultra 3 pricing and positioning language are Apple's real, current published pricing.</li>
-    <li>Upgrade cycles, retention windows, Fitness+ attach/churn mix, engineering team sizes, rates, and timelines are the author's stated assumptions, chosen to be defensible and internally consistent rather than sourced from Apple financials or public benchmarks.</li>
+    <li>The opening quote is illustrative, drawn from my own use of the product. It isn't a cited user interview.</li>
+    <li>Apple has publicly reported that frequent ring-closers (closing all three at least half the time) see meaningfully better sleep, resting heart rate, and stress outcomes than infrequent closers (10% of the time or less). See Apple Newsroom, <a href="https://www.apple.com/newsroom/2025/04/get-active-with-apple-watch/" target="_blank" rel="noopener">"Get active with Apple Watch"</a> (April 2025). That release doesn't publish an exact population-wide closure rate or a breakdown by age; the ~31.8% average and the six age-bucket figures used in this model come from my own research notes, not from that release.</li>
+    <li>Apple Watch's installed base publicly crossed 100M in 2021 (<a href="https://www.imore.com/counterpoint-research-apple-now-has-100-million-user-base-apple-watch" target="_blank" rel="noopener">Counterpoint Research, via iMore</a>). The ~229M figure used here extrapolates continued unit growth through 2026 and is my own working estimate, not a published 2026 figure. It's a reasonable ballpark, not a precise count.</li>
+    <li>Watch SE 3, Series 11, and Ultra 3 pricing and positioning language are Apple's real, current published pricing.</li>
+    <li>Upgrade cycles, retention windows, Fitness+ attach and churn mix, engineering team sizes, rates, and timelines are my own stated assumptions. I picked them to be defensible and internally consistent, not because they're sourced from Apple financials or public benchmarks.</li>
   </ul>
 </section>
 
-<footer class="wrap">Apple Fitness Product Teardown — Personas · Market Sizing · LTV Modeling · Prototyping · ROI</footer>
+<footer class="wrap">Apple Fitness Product Teardown · Personas · Market Sizing · LTV Modeling · Prototyping · ROI</footer>
 
 <script>
   const els = document.querySelectorAll('.reveal');
