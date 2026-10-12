@@ -262,7 +262,7 @@
 
 <section class="wrap reveal">
   <div class="eyebrow"><span class="num">03</span> Sizing the Segments</div>
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Fewer than 40% of Apple Watch users close all three rings on a given day, and that rate shifts quite a bit by age. Six published age-bucket figures (35%, 38%, 40%, 34%, 26%, 18%) average out to roughly 31.8%. A weighted mixture model, solved against a base of roughly 229M Apple Watch users, works backward from that average to split the base into the three personas below.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Apple Watch users close all three rings on under 40% of days, and that rate swings a lot by age: six published age-bucket figures (35%, 38%, 40%, 34%, 26%, 18%) average out to roughly 31.8%. I used that average to split a base of roughly 229M users into the three personas below, by solving a weighted mixture model backward from it.</p>
 
   <div class="stack-bar">
     <div class="seg-freak">12%</div><div class="seg-casual">48%</div><div class="seg-delighter">40%</div>
@@ -299,7 +299,7 @@
 
 <section class="wrap reveal">
   <div class="eyebrow"><span class="num">04</span> Value at Risk</div>
-  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">Modeling lifetime value under two scenarios per segment, a normal trajectory and one where each problem goes unsolved, surfaces where the real financial exposure sits.</p>
+  <p style="color:var(--ink-soft);font-size:14.5px;max-width:600px;">To find where the real financial exposure sits, I modeled each segment's lifetime value two ways: a normal trajectory, and one where the problem goes unsolved.</p>
 
   <div class="ltv-block">
     <div class="ltv-row">
@@ -331,7 +331,7 @@
   </table>
   <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">I'm more confident in the hardware math (it's real Apple pricing) than in the retention-window and Fitness+ attach assumptions, which I picked to be internally consistent rather than pulled from a benchmark.</p>
 
-  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">One honest caveat: the billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. Here's what the exposure looks like at a more realistic incidence rate, the share of each segment that actually experiences the failure badly enough in a given year to churn or abandon the habit:</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">One honest caveat: the billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. Scaling by a more realistic incidence rate, the share of each segment that actually experiences the failure badly enough in a given year to churn or abandon the habit, tells a different story:</p>
   <table>
     <tr><th>Incidence rate</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Combined</th></tr>
     <tr><td>10%</td><td class="num">$3.6B</td><td class="num">$4.0B</td><td class="num">$7.6B</td></tr>
