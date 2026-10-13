@@ -276,7 +276,7 @@
     <span class="step">Step 2: set up the mixture model (F = Fitness Freak, C = Casual Enthusiast, O = Passive Delighter).</span><br>
     0.80(F) + 0.30(C) + 0.20(O) = 0.318 &nbsp;&nbsp;·&nbsp;&nbsp; F + C + O = 1
     <hr>
-    <span class="step">Step 3: hold F : C fixed at prior calibration (1 : 4.19), so C = 4.19F and O = 1 − 5.19F.</span><br>
+    <span class="step">Step 3: I set the Fitness Freak to Casual ratio at 1 : 4.19, so C = 4.19F and O = 1 − 5.19F.</span><br>
     0.80F + 0.30(4.19F) + 0.20(1 − 5.19F) = 0.318<br>
     0.80F + 1.257F + 0.20 − 1.038F = 0.318<br>
     1.019F = 0.118&nbsp;&nbsp;→&nbsp;&nbsp;F = 0.118 / 1.019 = 0.1158
@@ -294,7 +294,7 @@
     <tr class="total"><td>1 : 4.19 (base)</td><td class="num">11.6% (26.5M)</td><td class="num">48.5% (111.2M)</td><td class="num">39.9% (91.3M)</td><td class="num">$75.8B</td></tr>
     <tr><td>1 : 5.03 (20% higher)</td><td class="num">10.7% (24.5M)</td><td class="num">53.8% (123.2M)</td><td class="num">35.5% (81.3M)</td><td class="num">$77.3B</td></tr>
   </table>
-  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Each persona's share swings by several points across that range, but combined value-at-risk between the two exposed segments barely moves, staying within about 2.5% of the base case ($74.0B to $77.3B). That's the part I actually trust: which persona "owns" more of the exposure is fuzzy, but both problems being comparably large isn't.</p>
+  <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">Each persona's share swings by several points across that range, but combined value-at-risk between the two exposed segments barely moves, staying within about 2.5% of the base case ($74.0B to $77.3B). So which persona "owns" more of the exposure is fuzzy, but both problems being comparably large holds up.</p>
 </section>
 
 <section class="wrap reveal">
@@ -331,7 +331,7 @@
   </table>
   <p style="color:var(--ink-soft);font-size:13px;max-width:640px;margin-top:10px;">I'm more confident in the hardware math (it's real Apple pricing) than in the retention-window and Fitness+ attach assumptions, which I picked to be internally consistent rather than pulled from a benchmark.</p>
 
-  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">One honest caveat: the billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. Scaling by a more realistic incidence rate, the share of each segment that actually experiences the failure badly enough in a given year to churn or abandon the habit, tells a different story:</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:640px;margin-top:16px;">The billion-dollar figures above assume every affected user actually hits the worst case, which won't happen in practice. Scaling by a more realistic incidence rate, the share of each segment that actually experiences the failure badly enough in a given year to churn or abandon the habit, tells a different story:</p>
   <table>
     <tr><th>Incidence rate</th><th>Fitness Freak</th><th>Casual Enthusiast</th><th>Combined</th></tr>
     <tr><td>10%</td><td class="num">$3.6B</td><td class="num">$4.0B</td><td class="num">$7.6B</td></tr>
@@ -411,7 +411,7 @@
 
 <section class="wrap reveal">
   <div class="eyebrow">A Note on the Numbers</div>
-  <p style="color:var(--ink-soft);font-size:13.5px;max-width:680px;">I built this to show how I think through a product problem, not as a research paper, so it's worth being upfront about where the hard data ends and my own judgment takes over. The opening quote is from my own experience with the product, not an interview. Apple has publicly shown that frequent ring-closers sleep better and run healthier resting heart rates than infrequent ones (<a href="https://www.apple.com/newsroom/2025/04/get-active-with-apple-watch/" target="_blank" rel="noopener">Apple Newsroom, April 2025</a>), but they haven't published the exact closure rate or an age breakdown, so the 31.8% average and the six age-bucket figures behind it are from my own notes. Same with the 229M user base: Apple Watch crossed 100M users back in 2021 (<a href="https://www.imore.com/counterpoint-research-apple-now-has-100-million-user-base-apple-watch" target="_blank" rel="noopener">Counterpoint Research</a>), and I extrapolated forward to 2026 myself rather than finding a clean updated figure. Hardware pricing is pulled straight from Apple's current lineup. Everything else (retention windows, Fitness+ attach rates, team sizes, build timelines) is my own assumption, built to be internally consistent and defensible under questioning rather than lifted from a benchmark I could cite.</p>
+  <p style="color:var(--ink-soft);font-size:13.5px;max-width:680px;">I built this to show how I think through a product problem, not as a research paper, so it's worth being upfront about where the hard data ends and my own judgment takes over. The opening quote is from my own experience with the product, not an interview. Apple has publicly shown that frequent ring-closers sleep better and run healthier resting heart rates than infrequent ones (<a href="https://www.apple.com/newsroom/2025/04/get-active-with-apple-watch/" target="_blank" rel="noopener">Apple Newsroom, April 2025</a>), but they haven't published the exact closure rate or an age breakdown, so the 31.8% average and the six age-bucket figures behind it are from my own notes. Same with the 229M user base: Apple Watch crossed 100M users back in 2021 (<a href="https://www.imore.com/counterpoint-research-apple-now-has-100-million-user-base-apple-watch" target="_blank" rel="noopener">Counterpoint Research</a>), and I extrapolated forward to 2026 myself rather than finding a clean updated figure. Hardware pricing is pulled straight from Apple's current lineup. Everything else (retention windows, Fitness+ attach rates, team sizes, build timelines) is my own assumption, chosen to be internally consistent rather than taken from a published benchmark.</p>
 </section>
 
 <footer class="wrap">Apple Fitness Product Teardown · Personas · Market Sizing · LTV Modeling · Prototyping · ROI</footer>
